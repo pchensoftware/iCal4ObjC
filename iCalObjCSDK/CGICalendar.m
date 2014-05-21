@@ -79,7 +79,7 @@
 {
     return [NSError errorWithDomain:@"iCalForObjC" code:-1 userInfo:
             [NSDictionary dictionaryWithObjectsAndKeys:
-             [NSString stringWithFormat:@"%d", lineString], @"LineNumber",
+             [NSString stringWithFormat:@"%@", lineString], @"LineNumber",
              lineString, @"ContentLine",
              nil]];
 }
