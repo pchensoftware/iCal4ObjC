@@ -12,38 +12,57 @@
 
 @implementation NSDate(CGICalendar)
 
++ (NSDateFormatter *)cgi_icalendarDateFormatter {
+   static NSDateFormatter *_cgi_icalendarDateFormatter = nil;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+      _cgi_icalendarDateFormatter = [[NSDateFormatter alloc] init];
+      _cgi_icalendarDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+      _cgi_icalendarDateFormatter.dateFormat = CGNSDATE_ICALENDAR_DATETMEFORMAT;
+   });
+   return _cgi_icalendarDateFormatter;
+}
+
++ (NSDateFormatter *)cgi_iso8601DateFormatter {
+   static NSDateFormatter *_cgi_iso8601DateFormatter = nil;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+      _cgi_iso8601DateFormatter = [[NSDateFormatter alloc] init];
+      _cgi_iso8601DateFormatter.timeStyle = NSDateFormatterFullStyle;
+      _cgi_iso8601DateFormatter.dateFormat = CGNSDATE_ISO8601_DATETMEFORMAT;
+   });
+   return _cgi_iso8601DateFormatter;
+}
+
++ (NSDateFormatter *)cgi_iso8601DescriptionDateFormatter {
+   static NSDateFormatter *_cgi_iso8601DescriptionDateFormatter = nil;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+      _cgi_iso8601DescriptionDateFormatter = [[NSDateFormatter alloc] init];
+      _cgi_iso8601DescriptionDateFormatter.locale = [NSLocale systemLocale];
+      _cgi_iso8601DescriptionDateFormatter.dateFormat = CGNSDATE_ISO8601_DATETMEFORMAT;
+   });
+   return _cgi_iso8601DescriptionDateFormatter;
+}
+
 + (id)dateWithICalendarString:(NSString *)aString
 {
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-	[dateFormatter setTimeZone:timeZone];
-    [dateFormatter setDateFormat:CGNSDATE_ICALENDAR_DATETMEFORMAT];
-    return [dateFormatter dateFromString:aString];
+   return [[self cgi_icalendarDateFormatter] dateFromString:aString];
 }
 
 + (id)dateWithICalendarISO8601:(NSString *)aString
 {
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
-    [dateFormatter setDateFormat:CGNSDATE_ISO8601_DATETMEFORMAT];
-    return [dateFormatter dateFromString:aString];
+   return [[self cgi_iso8601DateFormatter] dateFromString:aString];
 }
 
 - (NSString *)descriptionICalendar
 {
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-	[dateFormatter setTimeZone:timeZone];
-	[dateFormatter setDateFormat:CGNSDATE_ICALENDAR_DATETMEFORMAT];
-	return [dateFormatter stringFromDate:self];
+	return [[NSDate cgi_icalendarDateFormatter] stringFromDate:self];
 }
 
 - (NSString *)descriptionISO8601
 {
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-	[dateFormatter setLocale:[NSLocale systemLocale]];
-	[dateFormatter setDateFormat:CGNSDATE_ISO8601_DATETMEFORMAT];
-	return [dateFormatter stringFromDate:self];
+	return [[NSDate cgi_iso8601DescriptionDateFormatter] stringFromDate:self];
 }
 
-@end 
+@end
