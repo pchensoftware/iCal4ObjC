@@ -124,14 +124,14 @@
 {
 	NSString *nowNewLineString = [aString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 	NSArray *values = [nowNewLineString componentsSeparatedByString:CG_ICALENDAR_CONTENTLINE_DELIM];
-	int valuesCnt = [values count];
+	NSInteger valuesCnt = [values count];
 	if (valuesCnt < 2)
 		return;
 	
 	NSArray *nameParams = [[values objectAtIndex:0] componentsSeparatedByString:CG_ICALENDAR_CONTENTLINE_NAMEPARAM_DELIM];
 	NSMutableArray *params = [NSMutableArray array];
-	int nameParamsCnt = [nameParams count];
-	for (int n=0; n<nameParamsCnt; n++) {
+	NSInteger nameParamsCnt = [nameParams count];
+	for (NSInteger n=0; n<nameParamsCnt; n++) {
 		if (n == 0) {
 			[self setName:[nameParams objectAtIndex:0]];
 			continue;
@@ -143,7 +143,7 @@
 	[self setParameters:params];
 
 	NSMutableString *valueString = [NSMutableString string];
-	for (int n=1; n<valuesCnt; n++) {
+	for (NSInteger n=1; n<valuesCnt; n++) {
 		if (1 < n)
 			[valueString appendString:CG_ICALENDAR_CONTENTLINE_DELIM];
 		[valueString appendString:[values objectAtIndex:n]];
