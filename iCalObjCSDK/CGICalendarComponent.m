@@ -201,12 +201,12 @@
     [self setPropertyValue:[object descriptionICalendar] forName:name parameterValues:parameterValues parameterNames:parameterNames];
 }
 
-- (void)setPropertyInteger:(int)value forName:(NSString *)name
+- (void)setPropertyInteger:(NSInteger)value forName:(NSString *)name
 {
     [self setPropertyValue:[[NSNumber numberWithInteger:value] stringValue] forName:name];
 }
 
-- (void)setPropertyInteger:(int)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames
+- (void)setPropertyInteger:(NSInteger)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames
 {
     [self setPropertyValue:[[NSNumber numberWithInteger:value] stringValue] forName:name parameterValues:parameterValues parameterNames:parameterNames];
 }
@@ -261,7 +261,7 @@
     return nil;
 }
 
-- (int)propertyIntegerForName:(NSString *)name;
+- (NSInteger)propertyIntegerForName:(NSString *)name;
 {
     for (CGICalendarProperty *icalProp in [self properties]) {
         if ([icalProp isName:name])
@@ -343,7 +343,7 @@
 #pragma mark -
 #pragma mark 4.2.12 Participation Status
 
-- (void)setParticipationStatus:(int)status
+- (void)setParticipationStatus:(NSInteger)status
 {
     CGICalendarProperty *icalProp = [self propertyForName:CG_ICALENDAR_PROERTY_PARTSTAT];
     if (icalProp == nil)
@@ -351,7 +351,7 @@
     [icalProp setParticipationStatus:status];
 }
 
-- (int)participationStatus
+- (NSInteger)participationStatus
 {
     CGICalendarProperty *icalProp = [self propertyForName:CG_ICALENDAR_PROERTY_PARTSTAT];
     if (icalProp == nil)

@@ -57,8 +57,8 @@
 - (void)setPropertyObject:(id)object forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
 - (void)setPropertyDate:(NSDate *)object forName:(NSString *)name;
 - (void)setPropertyDate:(NSDate *)object forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
-- (void)setPropertyInteger:(int)value forName:(NSString *)name;
-- (void)setPropertyInteger:(int)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
+- (void)setPropertyInteger:(NSInteger)value forName:(NSString *)name;
+- (void)setPropertyInteger:(NSInteger)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
 - (void)setPropertyFloat:(float)value forName:(NSString *)name;
 - (void)setPropertyFloat:(float)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
 
@@ -68,14 +68,14 @@
 
 - (NSString *)propertyValueForName:(NSString *)name;
 - (NSDate *)propertyDateForName:(NSString *)name;
-- (int)propertyIntegerForName:(NSString *)name;
+- (NSInteger)propertyIntegerForName:(NSString *)name;
 - (float)propertyFloatForName:(NSString *)name;
 
 - (NSString *)description;
 
 // 4.2.12 Participation Status
-- (void)setParticipationStatus:(int)status;
-- (int)participationStatus;
+- (void)setParticipationStatus:(NSInteger)status;
+- (NSInteger)participationStatus;
 
 // 4.8.1.5 Description
 - (void)setNotes:(NSString *)value;
