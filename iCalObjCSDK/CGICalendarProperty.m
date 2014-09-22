@@ -85,12 +85,12 @@
     [self setParameterValue:[object descriptionICalendar] forName:name parameterValues:parameterValues parameterNames:parameterNames];
 }
 
-- (void)setParameterInteger:(int)value forName:(NSString *)name
+- (void)setParameterInteger:(NSInteger)value forName:(NSString *)name
 {
     [self setParameterValue:[[NSNumber numberWithInteger:value] stringValue] forName:name parameterValues:[NSArray array] parameterNames:[NSArray array]];
 }
 
-- (void)setParameterInteger:(int)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames
+- (void)setParameterInteger:(NSInteger)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames
 {
     [self setParameterValue:[[NSNumber numberWithInteger:value] stringValue] forName:name parameterValues:parameterValues parameterNames:parameterNames];
 }
@@ -145,7 +145,7 @@
     return nil;
 }
 
-- (int)parameterIntegerForName:(NSString *)name;
+- (NSInteger)parameterIntegerForName:(NSString *)name;
 {
     for (CGICalendarParameter *icalProp in [self parameters]) {
         if ([icalProp isName:name])
@@ -203,7 +203,7 @@
     return statusStrings;
 }
 
-- (void)setParticipationStatus:(int)status
+- (void)setParticipationStatus:(NSInteger)status
 {
     NSArray *statusStrings = [self participationStatusStrings];
     if (status < 0 || ([statusStrings count]-1) < status)
@@ -211,7 +211,7 @@
     [self setValue:[statusStrings objectAtIndex:status]];
 }
 
-- (int)participationStatus
+- (NSInteger)participationStatus
 {
     if ([self value] == nil)
         return CGICalendarParticipationStatusUnkown;

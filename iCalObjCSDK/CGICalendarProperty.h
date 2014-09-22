@@ -59,8 +59,8 @@ enum {
 - (void)setParameterObject:(id)object forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
 - (void)setParameterDate:(NSDate *)object forName:(NSString *)name;
 - (void)setParameterDate:(NSDate *)object forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
-- (void)setParameterInteger:(int)value forName:(NSString *)name;
-- (void)setParameterInteger:(int)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
+- (void)setParameterInteger:(NSInteger)value forName:(NSString *)name;
+- (void)setParameterInteger:(NSInteger)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
 - (void)setParameterFloat:(float)value forName:(NSString *)name;
 - (void)setParameterFloat:(float)value forName:(NSString *)name parameterValues:(NSArray *)parameterValues parameterNames:(NSArray *)parameterNames;
 
@@ -69,10 +69,10 @@ enum {
 - (NSArray *)allParameterKeys;
 - (NSString *)parameterValueForName:(NSString *)name;
 - (NSDate *)parameterDateForName:(NSString *)name;
-- (int)parameterIntegerForName:(NSString *)name;
+- (NSInteger)parameterIntegerForName:(NSString *)name;
 - (float)parameterFloatForName:(NSString *)name;
 
-- (void)setParticipationStatus:(int)value;
-- (int)participationStatus;
+- (void)setParticipationStatus:(NSInteger)value;
+- (NSInteger)participationStatus;
 
 @end
